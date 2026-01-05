@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   callback = function(event)
     if vim.g.autoformat and vim.bo[event.buf].buftype == "" then
       local conform = require("conform")
-      conform.format({ bufnr = event.buf, timeout_ms = 500, lsp_fallback = true })
+      conform.format({ bufnr = event.buf, lsp_fallback = true })
     end
   end,
 })
