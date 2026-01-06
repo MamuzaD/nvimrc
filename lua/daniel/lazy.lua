@@ -22,6 +22,7 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    { import = "plugins.coding" },
     { import = "plugins.ui" },
   },
   change_detection = { notify = true },

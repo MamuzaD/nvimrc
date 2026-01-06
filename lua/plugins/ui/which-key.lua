@@ -42,6 +42,9 @@ return {
           },
           -- better descriptions
           { "gx", desc = "Open with system app" },
+          -- custom icons for specific keys
+          { "<leader>o", icon = { icon = "󰏇", color = "yellow" } },
+          { "<leader>t", icon = { icon = "", color = "green" } },
         },
       },
     },
