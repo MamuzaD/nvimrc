@@ -23,7 +23,9 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
     { import = "plugins.coding" },
+    { import = "plugins.formatting" },
     { import = "plugins.ui" },
+    -- { import = "plugins.coding" },
   },
   change_detection = { notify = true },
   checker = { enabled = true },
