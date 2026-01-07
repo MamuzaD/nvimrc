@@ -72,7 +72,7 @@ return {
             { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" }, has = "codeLens" },
             { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, has = "codeLens" },
             { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
-            { "<leader>cA", function() vim.lsp.buf.code_action({ context = { only = { "source" } } }) end, desc = "Source Action", has = "codeAction" },
+            { "<leader>cA", util.lang.source_action("source"), desc = "Source Action", has = "codeAction" },
           },
         },
         stylua = { enabled = false },
