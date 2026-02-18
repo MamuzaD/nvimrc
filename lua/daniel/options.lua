@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 vim.g.autoformat = true
+vim.g.ai_cmp = true
 
 opt.clipboard = "unnamedplus"
 
