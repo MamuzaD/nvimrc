@@ -68,7 +68,7 @@ return {
               desc = "Organize Imports",
             },
             {
-              "<leader>cM",
+              "<leader>cm",
               util.lang.source_action("source.addMissingImports.ts"),
               desc = "Add missing imports",
             },

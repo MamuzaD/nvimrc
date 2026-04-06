@@ -4,10 +4,7 @@ function M.source_action(only)
   return function()
     vim.lsp.buf.code_action({
       apply = true,
-      context = {
-        only = { only },
-        diagnostics = vim.lsp.diagnostic.get(0), -- current buffer diagnostics
-      },
+      context = { only = { only } },
     })
   end
 end

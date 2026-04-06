@@ -22,7 +22,31 @@ return {
             },
           },
         },
-        basedpyright = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                diagnosticSeverityOverrides = {
+                  reportAny = "none",
+                  reportMissingTypeStubs = "none",
+                  reportImplicitRelativeImport = "none",
+                  reportUnknownVariableType = "none",
+                  reportExplicitAny = "none",
+                  reportUnknownMemberType = "none",
+                  reportUnknownParameterType = "none",
+                  reportMissingParameterType = "none",
+                  reportMissingTypeArgument = "none",
+                  reportInvalidCast = "none",
+                  reportUnusedCallResult = "none",
+                  reportImportCycles = "none",
+                  reportUnannotatedClassAttribute = "none",
+                  reportUnknownLambdaType = "none",
+                  reportUnknownArgumentType = "none",
+                },
+              },
+            },
+          },
+        },
       },
       setup = {
         ruff = function()

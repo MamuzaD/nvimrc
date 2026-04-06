@@ -24,6 +24,20 @@ return {
       end
     end,
   },
+  {
+    "sainnhe/everforest",
+    priority = 1000,
+    opts = {},
+    lazy = colorscheme ~= "everforest",
+    config = function(_, opts)
+      for key, value in pairs(opts) do
+        vim.g["everforest_" .. key] = value
+      end
+      if colorscheme == "everforest" then
+        ColorMyPencils()
+      end
+    end,
+  },
   -- {
   --   "erikbackman/brightburn.vim",
   --   priority = 1000,
