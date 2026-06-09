@@ -25,6 +25,7 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>fG", "<cmd>Telescope git_status<cr>", desc = "Git Working Files" },
 
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },

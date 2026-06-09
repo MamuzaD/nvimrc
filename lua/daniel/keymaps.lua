@@ -56,6 +56,28 @@ end, { desc = "Delete Other Buffers" })
 -- end, { desc = "Delete Other Buffers" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
+-- Open a buffer for each file with working changes (git status)
+map("n", "<leader>bG", function()
+  local root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+  if vim.v.shell_error ~= 0 then
+    vim.notify("Not a git repository", vim.log.levels.WARN)
+    return
+  end
+  local out = vim.fn.systemlist("git -C " .. vim.fn.shellescape(root) .. " status --porcelain")
+  local count = 0
+  for _, line in ipairs(out) do
+    -- strip the 2-char status code, handle renames (old -> new)
+    local file = line:sub(4):match("->%s*(.+)$") or line:sub(4)
+    file = file:gsub('^"(.*)"$', "%1")
+    local path = root .. "/" .. file
+    if vim.fn.filereadable(path) == 1 then
+      vim.cmd("edit " .. vim.fn.fnameescape(path))
+      count = count + 1
+    end
+  end
+  vim.notify(count .. " working file(s) opened", vim.log.levels.INFO)
+end, { desc = "Open Git Working Files as Buffers" })
+
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
   vim.cmd("noh")
