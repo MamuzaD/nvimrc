@@ -68,6 +68,25 @@ return {
       .option("showtabline", { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = "Tabline" })
       :map("<leader>uA")
     Snacks.toggle.treesitter():map("<leader>uT")
+    Snacks.toggle
+      .new({
+        id = "use_oxc",
+        name = "oxc (oxfmt + oxlint)",
+        get = function()
+          return vim.g.use_oxc == true
+        end,
+        set = function(state)
+          vim.g.use_oxc = state
+          local lint = require("lint")
+          -- Clear stale oxlint diagnostics when turning it off.
+          if not state then
+            pcall(vim.diagnostic.reset, lint.get_namespace("oxlint"))
+          end
+          -- Re-lint so oxlint diagnostics appear/clear immediately.
+          pcall(lint.try_lint)
+        end,
+      })
+      :map("<leader>uo")
     Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
     Snacks.toggle.dim():map("<leader>uD")
     Snacks.toggle.animate():map("<leader>ua")

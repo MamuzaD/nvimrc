@@ -82,6 +82,10 @@ return {
       opts.formatters = opts.formatters or {}
       opts.formatters.prettier = {
         condition = function(_, ctx)
+          -- Step aside only when oxfmt will actually format this buffer.
+          if require("daniel.util.oxc").formats(ctx.filename, vim.bo[ctx.buf].filetype) then
+            return false
+          end
           return M.has_parser(ctx) and (vim.g.prettier_needs_config ~= true or M.has_config(ctx))
         end,
       }

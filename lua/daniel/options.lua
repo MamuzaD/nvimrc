@@ -3,6 +3,10 @@ local opt = vim.opt
 vim.g.autoformat = true
 vim.g.ai_cmp = true
 
+-- Use the oxc toolchain (oxfmt + oxlint) for JS/TS instead of prettier/eslint.
+-- Toggle at runtime with <leader>uo. See daniel.util.oxc.
+vim.g.use_oxc = true
+
 opt.clipboard = "unnamedplus"
 
 opt.number = true
