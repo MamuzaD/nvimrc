@@ -58,6 +58,9 @@ return {
     local Snacks = require("snacks")
     Snacks.setup(opts)
 
+    -- snacks select without enabling the picker (that would move dashboard picks off telescope)
+    vim.ui.select = Snacks.picker.select
+
     -- toggles
     Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
     Snacks.toggle.diagnostics():map("<leader>ud")
