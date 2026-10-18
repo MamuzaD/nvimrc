@@ -1,8 +1,8 @@
 -- Shared helper for the oxc toolchain (oxfmt + oxlint).
 --
--- Toggle with `vim.g.use_oxc`:
---   * true  -> oxfmt formats + oxlint lints JS/TS
---   * false -> prettier formats (+ eslint, if enabled) instead
+-- Master switch `vim.g.use_oxc`:
+--   * true  -> oxfmt formats + oxlint (lsp) lints JS/TS
+--   * false -> prettier formats instead
 -- Default is set in `daniel.options`.
 local M = {}
 
@@ -14,14 +14,7 @@ M.fmt_filetypes = {
   "typescriptreact",
   "json",
   "jsonc",
-}
-
--- Filetypes oxlint can lint (JS/TS only, no json).
-M.lint_filetypes = {
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "typescriptreact",
+  "vue",
 }
 
 -- oxfmt config files. When `vim.g.oxc_needs_config` is true, oxfmt only runs
