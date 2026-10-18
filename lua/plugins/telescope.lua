@@ -139,7 +139,7 @@ return {
     "nvim-telescope/telescope.nvim",
     optional = true,
     opts = function(_, opts)
-      if not pcall(require, "telescope.nvim") then
+      if not require("lazy.core.config").spec.plugins["flash.nvim"] then
         return
       end
       local function flash(prompt_bufnr)

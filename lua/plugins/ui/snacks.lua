@@ -104,12 +104,7 @@ return {
   -- stylua: ignore
   keys = {
   	{ "<leader>n", function()
-  		local Snacks = require("snacks")
-  		if Snacks.config.picker and Snacks.config.picker.enabled then
-  			Snacks.picker.notifications()
-  		else
-  			Snacks.notifier.show_history()
-  		end
+  		require("snacks").notifier.show_history()
   	end, desc = "Notification History" },
   	{ "<leader>un", function()
   		require("snacks").notifier.hide()

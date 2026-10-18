@@ -29,13 +29,19 @@ return {
   config = function(_, opts)
     local M = {}
 
+    local function list_prepend(dst, src)
+      for i = 1, #src do
+        table.insert(dst, i, src[i])
+      end
+    end
+
     local lint = require("lint")
     for name, linter in pairs(opts.linters) do
       if type(linter) == "table" and type(lint.linters[name]) == "table" then
         lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name], linter)
         if type(linter.prepend_args) == "table" then
           lint.linters[name].args = lint.linters[name].args or {}
-          vim.list_extend(lint.linters[name].args, linter.prepend_args)
+          list_prepend(lint.linters[name].args, linter.prepend_args)
         end
       else
         lint.linters[name] = linter
@@ -78,7 +84,7 @@ return {
       names = vim.tbl_filter(function(name)
         local linter = lint.linters[name]
         if not linter then
-          LazyVim.warn("Linter not found: " .. name, { title = "nvim-lint" })
+          vim.notify("Linter not found: " .. name, vim.log.levels.WARN, { title = "nvim-lint" })
         end
         return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
       end, names)
