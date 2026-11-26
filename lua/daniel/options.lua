@@ -11,6 +11,19 @@ vim.g.oxc_needs_config = true
 
 opt.clipboard = "unnamedplus"
 
+-- no local clipboard (headless linux: ssh, rex, etc): copy via OSC 52
+if vim.fn.has("mac") == 0 and vim.env.DISPLAY == nil and vim.env.WAYLAND_DISPLAY == nil then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
+
 opt.number = true
 opt.relativenumber = true
 opt.tabstop = 2
